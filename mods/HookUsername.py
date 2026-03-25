@@ -3,7 +3,7 @@
 # authors: @neistv 
 # version: 1.0.0
 # meta developer: @latexmods
-# meta banner: https://github.com/neistv/mods/raw/main/assets/HookUsername.jpg
+# meta banner: https://github.com/neistv/mods/raw/main/assets/HookUsername.png
 import io
 import logging
 import re
