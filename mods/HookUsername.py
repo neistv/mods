@@ -103,9 +103,9 @@ class HookUsername(loader.Module):
             logging.exception(f"Ошибка при захвате: {e}")
             return False, str(e)
 
-    @loader.command(ru_doc="<юзернейм> — проверяет доступность юзернейма")
+    @loader.command(ru_doc="<юзернейм> — проверяет доступность юзернейма с возможностью занять его")
     async def uz(self, message: Message):
-        """<юзернейм> - проверяет доступность юзернейма"""
+        """<юзернейм> - проверяет доступность юзернейма с возможностью занять его."""
         args = utils.get_args_raw(message).strip().lstrip("@")
 
         if not args:
