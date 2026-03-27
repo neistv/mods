@@ -1,18 +1,15 @@
 # Name: lesenkascanner
 # Description: ищет лесенки в чате
 # version: 1.0.0
-# authors: @neistv
 # meta developer: @latexmods
 # meta banner: https://github.com/neistv/mods/raw/main/assets/LesenkaScanner.png
 
 import time
-import logging
 
 from herokutl.types import Message
 
 from .. import loader, utils
 
-logger = logging.getLogger(__name__)
 
 
 @loader.tds
