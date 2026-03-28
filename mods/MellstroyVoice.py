@@ -1,7 +1,7 @@
 # Name: MellstroyVoice
 # Description: голосовые Мелстроя
 # authors: @neistv 
-# version: 1.0.0
+# version: 1.2.0
 # meta developer: @latexmods
 # requires: pydub
 # meta banner: https://github.com/neistv/mods/raw/main/assets/MellstroyVoice.png
@@ -99,3 +99,15 @@ class MellstroyVoiceMod(loader.Module):
     async def ухуcmd(self, message):
         """​"""
         await _send_voice(self, message, "yxyyy.mp3")
+
+    async def быстрееcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "BISTREE.mp3")    
+
+    async def бэмбэмбэмcmd(self, message):
+        """​""" 
+        await _send_voice(self, message, "bembembem.mp3")    
+  
+    async def посидимcmd(self, message):
+        """​""" 
+        await _send_voice(self, message, "posidim.mp3") 
