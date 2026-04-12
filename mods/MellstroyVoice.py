@@ -1,20 +1,20 @@
 # Name: MellstroyVoice
 # Description: голосовые Мелстроя
 # authors: @neistv 
-# version: 1.2.0
+# version: 1.2.1
 # meta developer: @latexmods
-# requires: pydub
+# requires: pydub audioop-lts
 # meta banner: https://github.com/neistv/mods/raw/main/assets/MellstroyVoice.png
 
 import io
 
 import requests
 from pydub import AudioSegment
-from herokutl.types import Message
 
 from .. import loader, utils
 
 BASE_URL = "https://raw.githubusercontent.com/neistv/mods/main/assets%20mellstroy/"
+REQUEST_TIMEOUT = 15
 
 
 async def _send_voice(module, message, filename: str):
@@ -23,7 +23,13 @@ async def _send_voice(module, message, filename: str):
     if message.out:
         await message.delete()
 
-    voice_bytes = (await utils.run_sync(requests.get, BASE_URL + filename)).content
+    response = await utils.run_sync(
+        requests.get,
+        BASE_URL + filename,
+        timeout=REQUEST_TIMEOUT,
+    )
+    response.raise_for_status()
+    voice_bytes = response.content
 
     byte = io.BytesIO()
     AudioSegment.from_file(io.BytesIO(voice_bytes)).export(byte, format="ogg")
@@ -102,12 +108,12 @@ class MellstroyVoiceMod(loader.Module):
 
     async def быстрееcmd(self, message):
         """​"""
-        await _send_voice(self, message, "BISTREE.mp3")    
+        await _send_voice(self, message, "BISTREE.mp3")
 
     async def бэмбэмбэмcmd(self, message):
-        """​""" 
-        await _send_voice(self, message, "bembembem.mp3")    
-  
+        """​"""
+        await _send_voice(self, message, "bembembem.mp3")
+
     async def посидимcmd(self, message):
-        """​""" 
-        await _send_voice(self, message, "posidim.mp3") 
+        """​"""
+        await _send_voice(self, message, "posidim.mp3")
