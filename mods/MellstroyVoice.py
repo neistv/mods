@@ -53,9 +53,25 @@ class MellstroyVoiceMod(loader.Module):
 
     strings = {"name": "MellstroyVoice"}
 
+    async def бананcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "1банан.ogg")
+
+    async def бистриcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "BISTREE.mp3")
+
+    async def ааасmd(self, message):
+        """​"""
+        await _send_voice(self, message, "aaa.ogg")
+
     async def амамамcmd(self, message):
         """​"""
         await _send_voice(self, message, "amamam.mp3")
+
+    async def бембембемcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "bembembem.mp3")
 
     async def блятьcmd(self, message):
         """​"""
@@ -81,6 +97,10 @@ class MellstroyVoiceMod(loader.Module):
         """​"""
         await _send_voice(self, message, "idinaxyu.mp3")
 
+    async def посидимcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "posidim.mp3")
+
     async def раздваcmd(self, message):
         """​"""
         await _send_voice(self, message, "razdva.mp3")
@@ -101,6 +121,10 @@ class MellstroyVoiceMod(loader.Module):
         """​"""
         await _send_voice(self, message, "vinpgrad.mp3")
 
+    async def хамамcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "xamamm.ogg")
+
     async def хахахаcmd(self, message):
         """​"""
         await _send_voice(self, message, "xaxaxa.mp3")
@@ -108,18 +132,6 @@ class MellstroyVoiceMod(loader.Module):
     async def ухуcmd(self, message):
         """​"""
         await _send_voice(self, message, "yxyyy.mp3")
-
-    async def бананcmd(self, message):
-        """​"""
-        await _send_voice(self, message, "1банан.ogg")
-
-    async def ааасmd(self, message):
-        """​"""
-        await _send_voice(self, message, "aaa.ogg")
-
-    async def хамамcmd(self, message):
-        """​"""
-        await _send_voice(self, message, "xamamm.ogg")
 
     async def аоаоcmd(self, message):
         """​"""
@@ -195,7 +207,7 @@ class MellstroyVoiceMod(loader.Module):
 
     async def элджиевкаcmd(self, message):
         """​"""
-        await _send_voice(self, message, "элджиевка.ogg")
+        await _send_voice(self, message, "элджеевка.ogg")
 
     async def этоктоcmd(self, message):
         """​"""
