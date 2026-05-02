@@ -57,7 +57,7 @@ class MellstroyVoiceMod(loader.Module):
         """​"""
         await _send_voice(self, message, "1банан.ogg")
 
-    async def бистриcmd(self, message):
+    async def быстреecmd(self, message):
         """​"""
         await _send_voice(self, message, "BISTREE.mp3")
 
