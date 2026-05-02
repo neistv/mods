@@ -1,7 +1,7 @@
 # Name: MellstroyVoice
 # Description: голосовые Мелстроя
 # authors: @neistv 
-# version: 1.3.0
+# version: 1.3.1
 # meta developer: @latexmods
 # requires: pydub audioop-lts
 # meta banner: https://github.com/neistv/mods/raw/main/assets/MellstroyVoice.png
@@ -220,3 +220,15 @@ class MellstroyVoiceMod(loader.Module):
     async def яужекрасныйcmd(self, message):
         """​"""
         await _send_voice(self, message, "яужекрасный.ogg")
+
+    async def бурмалдаcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "бурмалда.ogg")
+
+    async def салатикcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "салатик.ogg")
+
+    async def стоитcmd(self, message):
+        """​"""
+        await _send_voice(self, message, "стоит.ogg")
