@@ -11,11 +11,70 @@ import os
 
 import requests
 from pydub import AudioSegment
+try:
+    from telethon import functions, types
+except ImportError:
+    try:
+        from herokutl.tl import functions, types
+    except ImportError:
+        functions = None
+        types = None
 
 from .. import loader, utils
 
 url = "https://raw.githubusercontent.com/neistv/mods/main/assets%20mellstroy/"
 cache = os.path.expanduser("~/.heroku/mellstroy_cache")
+
+
+def _reply_target(message, reply):
+    if not reply:
+        return None
+
+    header = getattr(message, "reply_to", None)
+    quote_text = getattr(header, "quote_text", None)
+    if not quote_text or types is None:
+        return reply.id
+
+    quote_offset = getattr(header, "quote_offset", None)
+    return types.InputReplyToMessage(
+        reply_to_msg_id=getattr(header, "reply_to_msg_id", None) or reply.id,
+        top_msg_id=getattr(header, "reply_to_top_id", None),
+        quote_text=quote_text,
+        quote_entities=getattr(header, "quote_entities", None),
+        quote_offset=quote_offset,
+    )
+
+
+async def _send_voice_file(client, chat, buf, reply_to, duration):
+    if (
+        functions is not None
+        and types is not None
+        and isinstance(reply_to, types.InputReplyToMessage)
+    ):
+        entity = await client.get_input_entity(chat)
+        uploaded = await client.upload_file(buf)
+        media = types.InputMediaUploadedDocument(
+            file=uploaded,
+            mime_type="audio/ogg",
+            attributes=[
+                types.DocumentAttributeAudio(duration=duration, voice=True),
+            ],
+        )
+        return await client(
+            functions.messages.SendMediaRequest(
+                entity,
+                media,
+                reply_to=reply_to,
+                message="",
+            )
+        )
+
+    return await client.send_file(
+        chat,
+        buf,
+        voice_note=True,
+        reply_to=reply_to,
+    )
 
 
 async def _send_voice(module, message, fn):
@@ -34,16 +93,20 @@ async def _send_voice(module, message, fn):
         data = r.content
         open(path, "wb").write(data)
 
+    sound = AudioSegment.from_file(io.BytesIO(data))
+    duration = max(1, round(len(sound) / 1000))
+
     buf = io.BytesIO()
-    AudioSegment.from_file(io.BytesIO(data)).export(buf, format="ogg")
+    sound.export(buf, format="ogg")
     buf.name = "voice.ogg"
     buf.seek(0)
 
-    await message.client.send_file(
+    await _send_voice_file(
+        message.client,
         message.to_id,
         buf,
-        voice_note=True,
-        reply_to=reply.id if reply else None,
+        _reply_target(message, reply),
+        duration,
     )
 
 
@@ -127,7 +190,7 @@ class MellstroyVoiceMod(loader.Module):
 
     async def хахахаcmd(self, message):
         """​"""
-        await _send_voice(self, message, "xaxaxa.mp3")
+        await _send_voice(self, message, "xaxaxaxa.mp3")
 
     async def ухуcmd(self, message):
         """​"""
@@ -159,7 +222,7 @@ class MellstroyVoiceMod(loader.Module):
 
     async def закинь5миллионовcmd(self, message):
         """​"""
-        await _send_voice(self, message, "закинь5миллионов.ogg")
+        await _send_voice(self, message, "закинь5милионов.ogg")
 
     async def зевсятинаcmd(self, message):
         """​"""
