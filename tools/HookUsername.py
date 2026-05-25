@@ -265,3 +265,4 @@ class HookUsernameMod(loader.Module):
 
     async def _close_cb(self, call):
         await call.delete()
+
