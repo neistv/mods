@@ -2,7 +2,7 @@
 # Description: ищет лесенки в чате
 # version: 1.0.0
 # meta developer: @latexmods
-# meta banner: https://github.com/neistv/mods/raw/main/assets/LesenkaScanner.png
+# meta banner: https://github.com/neistv/mods/raw/main/assets/banners/LesenkaScanner.png
 
 import time
 

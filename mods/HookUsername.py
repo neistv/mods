@@ -3,7 +3,7 @@
 # authors: @neistv
 # version: 1.0.1
 # meta developer: @latexmods
-# meta banner: https://github.com/neistv/mods/raw/main/assets/HookUsername.png
+# meta banner: https://github.com/neistv/mods/raw/main/assets/banners/HookUsername.png
 import io
 import logging
 import re
@@ -39,7 +39,7 @@ class HookUsernameMod(loader.Module):
             ),
             loader.ConfigValue(
                 "channel_avatar_url",
-                "https://raw.githubusercontent.com/neistv/mods/main/assets/rezerv.png",
+                "https://raw.githubusercontent.com/neistv/mods/main/assets/other/rezerv.png",
                 "ссылка на аватарку канала",
                 validator=loader.validators.String(),
             ),

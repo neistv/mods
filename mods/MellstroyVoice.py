@@ -4,7 +4,7 @@
 # version: 1.3.1
 # meta developer: @latexmods
 # requires: pydub audioop-lts
-# meta banner: https://github.com/neistv/mods/raw/main/assets/MellstroyVoice.png
+# meta banner: https://github.com/neistv/mods/raw/main/assets/banners/MellstroyVoice.png
 
 import io
 import os
@@ -22,7 +22,7 @@ except ImportError:
 
 from .. import loader, utils
 
-url = "https://raw.githubusercontent.com/neistv/mods/main/assets%20mellstroy/"
+url = "https://raw.githubusercontent.com/neistv/mods/main/assets/other/mellstroy/"
 cache = os.path.expanduser("~/.heroku/mellstroy_cache")
 
 
