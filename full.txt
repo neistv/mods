@@ -1,3 +1,3 @@
-voices/MellstroyVoice
-tools/HookUsername
-lesenkascanner
+mods/MellstroyVoice
+mods/HookUsername
+mods/lesenkascanner
