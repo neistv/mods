@@ -295,3 +295,4 @@ class MellstroyVoiceMod(loader.Module):
     async def стоитcmd(self, message):
         """​"""
         await _send_voice(self, message, "стоит.ogg")
+
