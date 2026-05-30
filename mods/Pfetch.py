@@ -1,7 +1,7 @@
 # Name: pfetch
 # Description: показывает инфу краткую о системе
 # authors: @neistv
-# version: 1.0.0
+# version: 1.0.1
 # meta developer: @latexmods
 # meta banner: https://github.com/neistv/mods/raw/main/assets/banners/pfetch.png
 import logging
@@ -324,35 +324,50 @@ class PfetchMod(loader.Module):
         return PfetchMod._clip(f"{username}@{host}", 18)
 
     def _logo_key(self, os_release: dict[str, str]) -> str:
-        distro = " ".join(
-            [
-                os_release.get("ID", ""),
-                os_release.get("ID_LIKE", ""),
-                os_release.get("NAME", ""),
-                os_release.get("PRETTY_NAME", ""),
-            ]
-        ).lower()
+        distro_id = os_release.get("ID", "").lower().strip('"')
+        
+        id_map = {
+            "ubuntu": "ubuntu",
+            "linuxmint": "mint",
+            "debian": "debian",
+            "fedora": "fedora",
+            "arch": "arch",
+            "archlinux": "arch",
+            "manjaro": "manjaro",
+            "endeavouros": "endeavour",
+            "alpine": "alpine",
+            "void": "void",
+            "nixos": "nixos",
+            "gentoo": "gentoo",
+            "freebsd": "freebsd",
+            "pop": "pop",
+        }
+        
+        if distro_id in id_map:
+            return id_map[distro_id]
+
+        distro_full = " ".join(os_release.values()).lower()
 
         for name in (
             "endeavour",
+            "manjaro",
+            "mint",
+            "ubuntu",
             "arch",
             "debian",
-            "ubuntu",
             "fedora",
             "alpine",
             "void",
             "nixos",
             "gentoo",
-            "manjaro",
-            "mint",
             "freebsd",
         ):
-            if name in distro:
+            if name in distro_full:
                 return name
 
-        if "suse" in distro:
+        if "suse" in distro_full:
             return "opensuse"
-        if "pop!_os" in distro or "pop os" in distro:
+        if "pop!_os" in distro_full or "pop os" in distro_full:
             return "pop"
 
         return "linux"
